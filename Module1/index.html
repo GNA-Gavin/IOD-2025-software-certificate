@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>page title</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header>
+        <h1 id="header">Header</h1>
+    </header>
+    <section>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Articles</a></li>
+            </ul>
+        </nav>
+        <article>
+            <h2>Article heading</h2>
+            <p>Paragraph...</p>
+            <a href="https://www.google.com/">More
+                information...</a><br>
+            <img src="https://players-cdn.n2erp.co.nz/cdn/images/products/large/29911_All_Blacks_Supporter_Sz5_2638483512756028898.jpg"
+                alt="Rugby Ball" height="200" width="200">
+        </article>
+        <section>
+            <form>
+                <div>
+                    <label for="street">Street:</label>
+                    <br>
+                    <input type="text" id="street" name="street" value="Queen Street">
+                </div>
+                <div>
+                    <label for="city">City:</label>
+                    <br>
+                    <input type="text" id="city" name="city" value="Auckland">
+                </div>
+                <button onclick="orderNow()">Order Now!</button>
+            </form>
+        </section>
+        <aside id="aside">
+            <h2>Related</h2>
+            <ul>
+                <li><a href="#">Article 1</a></li>
+                <li><a href="#">Article 2</a></li>
+            </ul>
+        </aside>
+    </section>
+
+    <footer>
+        <p>@copyright 2050 by nobody. all rights
+            reversed</p>
+    </footer>
+    <script>
+        document.getElementById("header").innerText =
+            'Hello JavaScript';
+        document.getElementById("aside").style.backgroundColor =
+            'green';
+        function orderNow() {
+            alert("Your order will be shipped soon.")
+        }
+    </script>
+</body>
+
+</html>

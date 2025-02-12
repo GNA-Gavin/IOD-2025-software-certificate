@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="mycssrules.css">
+</head>
+
+<body style="background-color: aliceblue;">
+    <div id="div1">
+        <h1>This is heading 1</h1>
+        <h2>This is heading 2</h2>
+        <h3>This is heading 3</h3>
+        <h4>This is heading 4</h4>
+        <h5>This is heading 5</h5>
+        <h6>This is heading 6</h6>
+    </div>
+    <h2>Image Example</h2>
+    <img src="https://assets.pokemon.com/assets/cms2/img/misc/gus/buttons/logo-pokemon-79x45.png" alt="Pokemon!"
+        width="200" height="200">
+    <br>
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/fb/All_Blacks_logo.svg/215px-All_Blacks_logo.svg.png"
+        alt="second image" width="200" height="200">
+
+    <div>
+        <table border="1">
+            <tr>
+                <th>Row 1 column 1</th>
+                <th>Row 1 column 2</th>
+                <th>Row 1 column 3</th>
+            </tr>
+            <tr>
+                <td>Row 2 column 1</td>
+                <td>Row 2 column 2</td>
+                <td>Row 2 column 3</td>
+            </tr>
+        </table>
+    </div>
+    <form action="./helloWorld.html">
+        <div>
+            <label for="firstName">First name:</label>
+            <br>
+            <input type="text" id="firstName" name="firstName" value="Joel">
+        </div>
+        <div class="bluediv">
+            <label for="lastName">Last name:</label>
+            <br>
+            <input type="text" id="lastName" name="lastName" value="Doe">
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+
+    <div class="bluediv">
+        <p id="p1">This is for demonstation only!</p>
+    </div>
+    <script>
+        function ShowMessage(){
+            alert("click to contiue")
+        document.getElementById("p1").style.background = "red"
+        document.getElementsById("div1").style.color = "red" //not working?
+        }
+    </script>
+    <button onclick="ShowMessage()">Show Message</button>
+</body>
+
+</html>
