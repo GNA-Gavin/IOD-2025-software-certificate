@@ -11,7 +11,7 @@ function changeColumn1() {
     ")";
   // change the heading text
   document.getElementById("heading1").innerHTML = 
-  document.getElementById("text1").value; /// testing GIt lalalal
+  document.getElementById("text1").value;
 }
 
 function changeColumn2() {
