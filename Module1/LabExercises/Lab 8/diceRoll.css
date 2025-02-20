@@ -1,0 +1,15 @@
+body {
+    background-color: green;
+    color: rgba(255, 0, 0, 0.836);
+    font-weight: bold;
+    font-family:Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.centering {
+    text-align: center; 
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roll</title>
+    <link rel="stylesheet" href="diceRoll.css" />
+    <script src="diceRoll.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Dice Roller</h1>
+        <!-- Image display for dice -->
+        <img id="diceImage" src="./images/dice-six-faces-one.png" alt="Dice result" style="width: 100px;">
+        <br>
+        <br>
+
+        <!-- Dropdown to select dice type -->
+        <label for="diceSelect">Choose a dice:</label>
+        <br>
+        <br>
+        <select id="diceSelect">
+            <option value="6">6-Sided Dice (d6)</option>
+            <option value="10">10-Sided Dice (d10)</option>
+        </select>
+        <br>
+        <br>
+
+        <!-- Single button to roll -->
+        <div>
+            <button>Roll Dice</button>
+        </div>
+        
+    </div>
+</body>
+
+</html>
