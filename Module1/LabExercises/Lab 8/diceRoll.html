@@ -10,10 +10,11 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="centering">
         <h1>Dice Roller</h1>
+
         <!-- Image display for dice -->
-        <img id="diceImage" src="./images/dice-six-faces-one.png" alt="Dice result" style="width: 100px;">
+        <img id="diceImages" src="./images/d6-1.png" alt="Dice result" style="width: 100px;">
         <br>
         <br>
 
@@ -22,17 +23,17 @@
         <br>
         <br>
         <select id="diceSelect">
-            <option value="6">6-Sided Dice (d6)</option>
-            <option value="10">10-Sided Dice (d10)</option>
+            <option name="6">6-Sided Dice (d6)</option>
+            <option name="10">10-Sided Dice (d10)</option>
         </select>
         <br>
         <br>
 
         <!-- Single button to roll -->
         <div>
-            <button>Roll Dice</button>
+            <button onClick="rollDice()">Roll Dice</button>
         </div>
-        
+
     </div>
 </body>
 
