@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>This is the title</title>
+  <meta>
+  <meta charset="UTF-8">
+  <meta name="description" content="A brief description of the webpade">
+  <meta name="keywords" content="HTML, CSS, JavaScript, Web Development">
+  <meta name="author" content="Gavin">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </meta>
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+  </style>
+
+
+</head>
+
+<body>
+  <h1>My HTML learning journey</h1>
+  <article>
+    <h2>Learning elements - div, span, p, pre, ul, li, ol, article</h2>
+    <div>HTML</div>
+    <div>CSS</div>
+    <div>JavaScript</div>
+    <span>This is Span 1</span><span>This is Span 2</span><span>This is Span 3</span>
+    <p>
+      p represents paragraph without preserving spacing
+    </p>
+    <pre>
+    Text in         a pre element
+    is displayed in a fixed-width
+    font, and it preserves
+    both      spaces and
+    line breaks
+    </pre>
+    <ul>
+      <li>Cat</li>
+      <li>Dog</li>
+      <li>Mouse</li>
+      <li>Horse <ul>
+          <li>Donkey</li>
+          <li>Mule</li>
+        </ul>
+      </li>
+    </ul>
+    <ol>
+      <li>House</li>
+      <li>Boat</li>
+      <li>Bach</li>
+    </ol>
+  </article>
+  <article>
+    <h2>Learning Tables - table, thead, tbody, tr, td, th</h2>
+    <table>
+      <tr>
+        <th colspan="2">Firstname</th>
+        <th>Lastname</th>
+        <th>Age</th>
+      </tr>
+      <tr>
+        <td>Priya</td>
+        <td>Sharma</td>
+        <td>24</td>
+        <td>extra cell</td>
+      </tr>
+      <tr>
+        <td>Arun</td>
+        <td>Singh</td>
+        <td>32</td>
+        <td>extra extra</td>
+      </tr>
+      <tr>
+        <td>Sam</td>
+        <td>Watson</td>
+        <td>41</td>
+        <td>addition</td>
+      </tr>
+      <tr>
+        <td>John</td>
+        <td>Smith</td>
+        <td>47</td>
+        <td rowspan="2">another</td>
+      </tr>
+      <tr>
+        <td>First</td>
+        <td>22</td>
+      </tr>
+    </table>
+  </article>
+  <article>
+    <h2>Learning elements - img, video, audio</h2>
+    <img src="https://picsum.photos/400/400" alt="Random Photo" width="200" height="200" />
+    <img src="assets/html_lab_image.jpg" alt="lab images" width="200" height="200" />
+    <br>
+    <video autoplay width="250">
+      <source src="assets/flower.webm" type="video/webm">
+      Sorry, your browser doesn't support embedded videos.
+    </video>
+    <figure>
+      <audio autoplay src="assets/t-rex-roar.mp3">
+        Your browser does not support the <code>audio</code> element.
+      </audio>
+      <figcaption>A roaring T-Rex sound effect.</figcaption>
+    </figure>
+  </article>
+  <form method="POST" action="http://127.0.0.1:5500/form.html">
+    <div>
+      <label for="firstName">First Name</label>
+      <input type="text" name="firstName" id="firstName">
+    </div>
+    <div>
+      <label for="secondName">Second Name</label>
+      <input type="text" name="secondName" id="secondName">
+    </div>
+    <div>
+      <label for="codingLanguage">PHP</label>
+      <input type="radio" name="codingLanguage" id="php" value="php">
+
+      <label for="codingLanguage">JavaScript</label>
+      <input type="radio" name="codingLanguage" id="js" value="js">
+
+      <label for="codingLanguage">Python</label>
+      <input type="radio" name="codingLanguage" id="python" value="python">
+    </div>
+    <div>
+      <label for="car">Car</label>
+      <input type="checkbox" id="car" name="vehicle" value="Car">
+
+      <label for="bike">Bike</label>
+      <input type="checkbox" id="bike" name="vehicle" value="Bike">
+
+      <label for="ute">Ute</label>
+      <input type="checkbox" id="truck" name="vehicle" value="ute">
+    </div>
+    <div>
+      <label for="carBrand">Select your car brand:</label>
+      <select id="carBrand" name="carBrand">
+        <option value="toyota">Toyota</option>
+        <option value="mazda">Mazda</option>
+        <option value="renault">Renault</option>
+        <option value="bmw">BMW</option>
+        <option value="vw">Volkswagon</option>
+      </select>
+    </div>
+    <button type="submit">Submit form</button>
+  </form>
+
+
+
+  <header>
+    <nav>
+      <!-- works like <a href="/index.html">Home</a> -->
+      <a href="./index.html">Home</a>
+      <a href="./form.html">Form</a>
+    </nav>
+  </header>
+
+  <main>
+  </main>
+
+  <footer>Copyright &copy; 2024</footer>
+</body>
+
+</html>
