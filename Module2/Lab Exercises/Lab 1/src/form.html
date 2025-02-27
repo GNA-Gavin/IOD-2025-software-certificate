@@ -8,13 +8,53 @@
 <body>
   <header>
     <nav>
-      <!-- works like <a href="/index.html">Home</a> -->
       <a href="./index.html">Home</a>
       <a href="./form.html">Form</a>
     </nav>
   </header>
-
   <main>
+    <h1>Please enter your details...</h1>
+    <form method="POST" action="http://localhost:3000/profile">
+      <div>
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" id="firstName">
+      </div>
+      <div>
+        <label for="secondName">Second Name</label>
+        <input type="text" name="secondName" id="secondName">
+      </div>
+      <div>
+        <label for="codingLanguage">PHP</label>
+        <input type="radio" name="codingLanguage" id="php" value="php">
+
+        <label for="codingLanguage">JavaScript</label>
+        <input type="radio" name="codingLanguage" id="js" value="js">
+
+        <label for="codingLanguage">Python</label>
+        <input type="radio" name="codingLanguage" id="python" value="python">
+      </div>
+      <div>
+        <label for="car">Car</label>
+        <input type="checkbox" id="car" name="vehicle" value="Car">
+
+        <label for="bike">Bike</label>
+        <input type="checkbox" id="bike" name="vehicle" value="Bike">
+
+        <label for="ute">Ute</label>
+        <input type="checkbox" id="truck" name="vehicle" value="ute">
+      </div>
+      <div>
+        <label for="carBrand">Select your car brand:</label>
+        <select id="carBrand" name="carBrand">
+          <option value="toyota">Toyota</option>
+          <option value="mazda">Mazda</option>
+          <option value="renault">Renault</option>
+          <option value="bmw">BMW</option>
+          <option value="vw">Volkswagon</option>
+        </select>
+      </div>
+      <button type="submit">Submit form</button>
+    </form>
   </main>
 
   <footer>Copyright &copy; 2024</footer>
