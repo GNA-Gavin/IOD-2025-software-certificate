@@ -1,0 +1,184 @@
+/* I. Selectors */
+/* Put styles for questions 1.1, 1.2, 1.3 and 1.4 here */
+
+article {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.style-me1 {
+    color: red;
+}
+
+#style-me2 {
+    color: blue;
+}
+
+.style-me1#style-me2 {
+    color: purple;
+}
+
+/* Put styles for questions 2.1 and 2.2 here */
+
+.my-descendants-are-styled p {
+    background-color: red;
+}
+
+.my-children-are-styled>p {
+    background-color: lightgreen;
+}
+
+/* II. Box model and common properties */
+/* Put styles for questions 1-8 here */
+
+.box {
+    background-color: blueviolet;
+    margin: 10px 20px 30px 40px;
+    padding: 10px 20px;
+    padding: 3em;
+    margin: 1%;
+    width: 200px;
+    height: 5rem;
+    width: 50vw;
+    height: 20vh !important;
+    border: 5px solid black;
+    border: 3px dashed red;
+    border: 4px dotted blue;
+    border: 10px solid green;
+    box-sizing: content-box;
+    box-sizing: border-box;
+    width: 300px;
+    height: 100px;
+    overflow: visible;
+    overflow: hidden;
+    overflow: scroll;
+    overflow: auto;
+    outline: 10px solid orange;
+    border-radius: 20px;
+    border-radius: 50%;
+    padding: 50px;
+    background-image: url('../assets/images/img1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* III. Positioning */
+/* Put styles for questions 1-3 here */
+
+.position-absolute {
+    position: absolute;
+    top: 0;
+    /* bottom: 20px; */
+    background-color: lightcoral;
+    right: 20px;
+
+}
+
+.position-relative {
+    position: relative;
+    background-color: aquamarine;
+}
+
+.position-sticky {
+    position: sticky;
+    background-color: lightblue;
+    top: 50px;
+}
+
+/* IV. Styling text */
+/* Put styles for questions 1-10 here */
+
+
+
+.text-style {
+    color: navy;
+    font-size: 20px;
+    font-size: 1.2rem;
+    font-size: 120%;
+    line-height: 1.5;
+    line-height: 2;
+    line-height: 150%;
+    line-height: 24px;
+    font-weight: bold;
+    font-weight: 400;
+    font-weight: 700;
+    font-weight: 500;
+
+    /* This is the linked font from within the html */
+    font-family: "Space Grotesk", sans-serif;
+
+    text-align: left;
+    text-align: center;
+    text-align: right;
+    text-align: justify;
+
+    letter-spacing: 2px;
+    letter-spacing: 5px;
+    letter-spacing: -1px;
+    letter-spacing: 1px;
+
+    word-spacing: 5px; 
+    word-spacing: 10px;
+    word-spacing: -2px;  
+
+    text-transform: none; 
+    text-transform: uppercase;
+    text-transform: lowercase;
+    text-transform: capitalize;
+
+    text-decoration: none; 
+    text-decoration: underline;
+    text-decoration: overline;
+    text-decoration: line-through;
+    text-decoration: underline dotted red;  
+
+}
+
+/* V. Styling links */
+/* Put styles for questions 1-3 here */
+
+a, a:link {
+    color: maroon; 
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none; 
+}
+
+a:hover, a:active, a:focus {
+    color: violet;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: gray;
+    font-style: italic;
+}
+
+
+/* VI. calc() */
+/* Put styles for questions 1-3 here */
+
+.calc-style{
+    width: 100vw; 
+    background-color: lightgray;
+    width: calc(100vw - 100px);
+}
+
+.fixed-width-col { 
+    width: 350px;
+    display: inline-block;
+    background-color: lightblue; 
+}
+
+.fluid-col {
+    display: inline-block;
+    width: calc(100vw - 350px);
+    background-color: lightcoral;
+    /* How do I "set a dynamically calculated width for the fluid-col so that the two elements appear side-by-side." */
+}
+
+.calc-row {
+    display: flex;
+}

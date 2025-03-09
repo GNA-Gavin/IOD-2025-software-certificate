@@ -1,0 +1,138 @@
+/* General Styles */
+.gelasio-text> {
+    font-family: "Gelasio", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  *{
+    font-family: "Gelasio", serif;
+  }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    line-height: 1.5em;
+    font-size: large;
+}
+
+ul li {
+    margin-bottom: 10px;
+    line-height: 1.5em;
+    font-weight: 400;
+}
+
+h2 {
+    color: #3399cc;
+    text-align: center;
+    font-variant: small-caps;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    white-space: nowrap;
+    z-index: 9; /* This seemed to be needed since the h2 was showing infront of the header when scrolling down*/
+}
+
+p{
+    font-weight: 400;
+}
+
+/* To add a line extending from the text to the edge */
+h2::before,
+h2::after {
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background-color: #3399cc;
+}
+
+h2::before {
+    margin-right: 10px;
+}
+
+h2::after {
+    margin-left: 10px;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    background-color: #6399cc;
+    color: white;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.contact-info a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+/* Professional Summary */
+/* I could just use section here and it would work but I may wish to modify independantly at a later date */
+.summary,
+.skills,
+.work-history,
+.education,
+.certifications,
+.referees {
+    background: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Skills - Two Column List */
+.skills-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+/* Work Experience */
+.job {
+    margin-bottom: 15px;
+}
+
+.details-header {
+    text-decoration: underline;
+}
+
+.date {
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) { /* Up to and including iPad Mini*/
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-photo {
+        margin-bottom: 10px;
+    }
+
+    .skills-list {
+        display: block;
+    }
+}
+
+/* I think future work for me might be to add a 'jump to' bar for each section, perhaps on the left or at the bottom of the header. This might be a javascript enhancement?*/
