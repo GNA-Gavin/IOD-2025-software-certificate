@@ -90,7 +90,12 @@ article {
 /* IV. Styling text */
 /* Put styles for questions 1-10 here */
 
-
+.space-grotesk-text {
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
 
 .text-style {
     color: navy;
