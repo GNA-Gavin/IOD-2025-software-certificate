@@ -14,12 +14,10 @@
     }
   ],
   "profile": {
-    "firstName": "ASDA",
-    "secondName": "ASD",
-    "vehicle": [
-      "Car",
-      "Bike"
-    ],
-    "carBrand": "bmw"
+    "firstName": "Gavin",
+    "secondName": "Aves",
+    "codingLanguage": "js",
+    "vehicle": "Car",
+    "carBrand": "renault"
   }
 }
