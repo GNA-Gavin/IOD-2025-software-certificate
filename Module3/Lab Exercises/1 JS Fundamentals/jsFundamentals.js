@@ -179,6 +179,15 @@ console.log("Expression 8: ");
 let newLessThan2 = thirtyNumber < fourNumber;
 console.log(newLessThan2); // true because the strings are being compared, not their numeric values
 console.log("");
+// commment from Mirza on how to fix this:
+let lessThan2_fixed = Number(thirty) < Number(four); //fixed - converted strings to numbers
+let lessThan2_fixed2 = parseInt(thirty) < parseInt(four); //fixed - converted strings to ints
+console.log(lessThan2_fixed);
+console.log("");
+console.log(lessThan2_fixed2)
+
+
+
 
 // ------------------------------------------------ Exercise 3 ------------------------------------------------ //
 

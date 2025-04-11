@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animation lab</title>
+</head>
+<style>
+    body {
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .square {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+        top: 0;
+        animation-name: slide-vertical;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    @keyframes slide-vertical {
+        0% {
+            top: 0;
+            background-color: red;
+        }
+        
+        25% {
+            top: calc(25vh);
+            background-color:purple;
+        }
+        
+        50% {
+            top: calc(100vh - 100px);
+            background-color: blue;
+        }
+        
+        75% {
+            top: calc(75vh);
+            background-color: orangered;
+        }
+        
+        100% {
+            top: 0;
+            background-color: red;
+        }
+    }
+</style>
+
+<body>
+    <div class="square"></div>
+</body>
+
+</html>

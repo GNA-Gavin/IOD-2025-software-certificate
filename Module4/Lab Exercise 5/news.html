@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<template id="news-template">
+    <div class="card col-8 mb-3" style="width: 18rem; margin:10px">
+        <div class="card-body">
+            <h5 class="card-title">News Title</h5>
+            <p class="card-text">News content.</p>
+        </div>
+    </div>
+</template>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Latest News</title>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Latest News</h1>
+        <div id="news-container" class="row"></div>
+    </div>
+    <br>
+    <form onsubmit="event.preventDefault()">
+        <div>
+            <label for="title">News Title </label>
+            <input type="text" name="title" id="title">
+        </div>
+        <br>
+        <div>
+            <label for="description">Description </label>
+            <input type="text" name="description" id="description">
+        </div>
+        <br>
+        <div>
+            <input type="submit" class="btn btn-primary" value="Add News" onClick="addNews()">
+        </div>
+    </form>
+    <br>
+        <button id="toggleRefresh" class="btn btn-warning" onClick="toggleRefresh()">Stop Auto-Refresh</button>
+
+    <script>
+        // Initial news data
+        let news = [
+            { id: 1, title: 'Election Results', content: "Newly elected minister..." },
+            { id: 2, title: 'Sporting Success', content: "World Cup winners..." },
+            { id: 3, title: 'Tornado Warning', content: "Residents should prepare..." }
+        ];
+
+        // Function to refresh the news display
+        function refreshNews() {
+            // Clear the existing news container
+            const container = document.getElementById('news-container');
+            container.innerHTML = "";
+
+            // Add all news items from the current array
+            news.forEach(item => {
+                const template = document.getElementById("news-template").content.cloneNode(true);
+                template.querySelector('.card-title').innerText = item.title;
+                template.querySelector('.card-text').innerText = item.content;
+                container.appendChild(template);
+            });
+        }
+
+        // Store the interval ID
+        let refreshIntervalId;
+        let isRefreshing = true;
+
+        // Initial display
+        refreshNews();
+        let i = 4;
+        // Set interval to check for updates every 5 seconds
+        refreshIntervalId = setInterval(() => {
+            console.log("Refreshing news...");
+
+            // news = []; // can just clear news here or add new items
+
+
+            // news.push({ // for demonstration/testing purposes
+            //     id: i++,
+            //     title: `Breaking News ${i}`,
+            //     content: `This is breaking news item ${i}...`
+            // });
+            // news.shift(); // this seems like a nicer implementation of the news? Removed the oldest news article and add the newest
+            refreshNews();
+            console.log("New item added!");
+        }, 5000);
+
+        // Function to toggle the refresh interval
+    function toggleRefresh() {
+        const toggleButton = document.getElementById('toggleRefresh');
+        
+        if (isRefreshing) {
+            // Stop the interval
+            clearInterval(refreshIntervalId);
+            toggleButton.textContent = "Start Auto-Refresh";
+            toggleButton.classList.replace("btn-warning", "btn-success");
+            isRefreshing = false;
+        } else {
+            // Restart the interval
+            refreshIntervalId = setInterval(() => {
+                console.log("Refreshing news...");
+                refreshNews();
+                console.log("News refreshed!");
+            }, 5000);
+            toggleButton.textContent = "Stop Auto-Refresh";
+            toggleButton.classList.replace("btn-success", "btn-warning");
+            isRefreshing = true;
+        }
+    }
+
+        function addNews() {
+            const title = document.getElementById('title').value.trim();
+            const content = document.getElementById('description').value.trim();
+
+            // Validate inputs
+            if (title === '' || content === '') {
+                alert('Please fill in both title and description');
+                return;
+            }
+
+            // Add new item to news array
+            news.push({
+                id: i++,
+                title: title,
+                content: content
+            });
+            // news.shift(); // if we want to remove the oldest news
+            // Refresh the display
+            refreshNews();
+
+            // Clear the form
+            document.getElementById('title').value = '';
+            document.getElementById('description').value = '';
+        }
+    </script>
+</body>
+
+</html>

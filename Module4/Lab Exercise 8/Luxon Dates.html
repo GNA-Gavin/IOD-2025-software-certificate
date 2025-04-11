@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.5.0/build/global/luxon.min.js"></script> 
+    <title>Luxon Dates</title>
+</head>
+<body>
+    <h1>Luxon Date Calculations</h1>
+
+    <!-- <div id="displayLuxon"></div> -->
+
+    <div id="results"></div>
+
+<script>
+        // Make Luxon's DateTime available
+        const DateTime = luxon.DateTime;
+        
+        // Birthday (April 5, 1989)
+        const birthdate = DateTime.fromFormat("05/04/1989", "dd/MM/yyyy");
+        const now = DateTime.now();
+           
+        let output = "";
+        
+        // 1) Days between birthdate and today
+        const daysDiff = now.diff(birthdate, 'days');
+        output += `<div class="result">
+            <h2>1) Days between birthdate and today:</h2>
+            <p>${Math.floor(daysDiff.days)} days</p>
+        </div>`;
+        
+        // 2) Years, months, days between birthdate and today
+        const preciseAge = now.diff(birthdate, ['years', 'months', 'days']);
+        output += `<div class="result">
+            <h2>2) My age:</h2>
+            <p>${Math.floor(preciseAge.years)} years, ${Math.floor(preciseAge.months)} months, and ${Math.floor(preciseAge.days)} days</p>
+        </div>`;
+        
+        // 3. Closest date to today
+        // For comparison
+        const pastDate = DateTime.fromFormat("10/01/2023", "dd/MM/yyyy"); 
+        const futureDate = DateTime.fromFormat("25/12/2025", "dd/MM/yyyy");
+
+        const diffPast = Math.abs(now.diff(pastDate, 'days').days);
+        const diffFuture = Math.abs(now.diff(futureDate, 'days').days);
+        const closest = diffPast < diffFuture ? 
+            `January 10, 2023 (${Math.floor(diffPast)} days difference)` : 
+            `December 25, 2025 (${Math.floor(diffFuture)} days difference)`;
+        
+        output += `<div class="result">
+            <h2>3) Date closest to today:</h2>
+            <p>${closest}</p>
+        </div>`;
+        
+        // 4) Compare dates
+        let comparison;
+        if (pastDate < futureDate) {
+            comparison = "January 10, 2023 is BEFORE December 25, 2025";
+        } else {
+            comparison = "January 10, 2023 is AFTER December 25, 2025";
+        }
+        
+        output += `<div class="result">
+            <h2>4. Date comparison:</h2>
+            <p>${comparison}</p>
+        </div>`;
+        
+        // 5) Current time in London
+        const londonTime = DateTime.now().setZone('Europe/London');
+        output += `<div class="result">
+            <h2>5) Current time in London:</h2>
+            <p>${londonTime.toLocaleString(DateTime.DATETIME_FULL)}</p>
+        </div>`;
+        
+        // Display all results
+        document.getElementById('results').innerHTML = output;
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="SimpleCalculator.css" />
+    <script src="SimpleCalculator.js"></script>
+</head>
+
+<body>
+    <div class="centering">
+        <h1>Simple Calculator</h1>
+
+        <input type="text" id="number1" name="number1">
+        <select id="operatorSelect">
+            <option name="plus">+</option>
+            <option name="minus">-</option>
+            <option name="multiply">x</option>
+            <option name="divide">/</option>
+        </select>
+        <input type="text" id="number2" name="number2">
+        <br>
+        <br>
+
+        <div>
+            <button onClick="calculate()">=</button>
+            <button id="clear" onClick="clearFields()">CLR</button>
+        </div>
+        <div id="result-Box">
+            <!-- Display result here-->
+        </div>
+
+    </div>
+</body>
+
+</html>

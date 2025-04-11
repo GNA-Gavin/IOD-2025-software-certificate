@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #e3f2fd;
+        }
+
+        /* .card {
+            padding: 10px;
+        } */
+
+
+        .card {
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: white;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 3em;
+            padding: 0 0 10px 0;
+        }
+
+        .card-description {
+            /* this is not used */
+            font-weight: 400;
+            font-size: 2em
+        }
+
+        .card-text {
+            font-weight: 400;
+            font-size: 1.5em;
+        }
+
+        .card img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .portfolio-item {
+            padding: 5px;
+            margin: 5px;
+            width: 150px;
+            height: 200px;
+            text-align: center;
+            border: 1px solid #ccc;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <template id="card-template">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title"></div>
+                <div class="card-text"></div>
+            </div>
+        </div>
+    </template>
+    <div id="card-list"></div>
+
+</body>
+<script>
+
+    const data = [{ name: 'bob', age: 23 }, {
+        name:
+            'alice', age: 39
+    }]
+
+    //My original approach created seperate cards for the artist profile and the portfolio
+    // function addCard(title, description = null/*, imageURL = null*/) { // this way description and imageURL are optional
+    //     // clone the template
+    //     const template = document.getElementById("card-template").content.cloneNode(true);
+
+    //     // populate the template
+    //     template.querySelector('.card-title').innerText = title;
+    //     // template.querySelector('.card-text').innerText = description; // I am changing this to accomodate the url of the artist card (instead of creating a new function)
+
+    //     const textElement = template.querySelector('.card-text');
+
+    //     // If there's an image URL, add an image, otherwise use text description
+    //     if (imageURL) {
+    //         textElement.innerHTML = `<img src="${imageURL}" alt="${title}">`;
+    //     } else if (description) {
+    //         textElement.innerText = description;
+    //     }
+
+    //     // include the populated template into the page
+    //     document.querySelector('#card-list').appendChild(template);
+    // }
+
+
+    function addCard(title, description = "") {
+        // Clone the artist profile card template
+        const template = document.getElementById("card-template").content.cloneNode(true);
+
+        // Set the artist name as the title
+        template.querySelector('.card-title').innerText = title;
+
+        // Set the description (in this case, "Famous Artist")
+        template.querySelector('.card-text').innerText = description;
+
+        return template; // changed to return the card instead of appendChild since will be used in another function
+    }
+
+    function addPortfolioItem(card, title, imageUrl) {
+        // Create a portfolio item card element
+        const portfolioItem = document.createElement('div');
+        portfolioItem.classList.add('portfolio-item');
+
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = title;
+
+        portfolioItem.appendChild(img);
+
+        // Add the portfolio item as a child of the artist's profile card
+        card.querySelector('.card-body').appendChild(portfolioItem);
+    }
+    // addCard();
+    const card1 = addCard("Title 1", "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem, ad.");
+    const card2 = addCard("Title 2", "Lorem ipsum dolor sit amet.");
+    document.querySelector('#card-list').appendChild(card1);
+    document.querySelector('#card-list').appendChild(card2);
+
+    data.forEach(person => {
+        document.querySelector('#card-list').appendChild(addCard(person.name, person.age));
+
+    });
+    // here
+    const artist = {
+        name: "Van Gogh",
+        portfolio: [
+            {
+                title: "portrait", 
+                url: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/436532/1671316/main-image"
+            },
+            {
+                title: "sky", 
+                url: "https://mymodernmet.com/wp/wp-content/uploads/2020/11/White-house-night-van-goh-worldwide-2.jpg"
+            }
+        ]
+    }
+    // Add artist profile as a separate card
+    // addCard(artist.name, "Famous Painter");
+    const card3 = addCard(artist.name, "Famous Painter");
+
+    // Add artist's portfolio items as image-based cards
+    artist.portfolio.forEach(item => {
+        // addCard(item.title, "", item.url);
+        addPortfolioItem(card3, item.title, item.url);
+    });
+
+    // Append the Van Gogh card to the card list
+    document.querySelector('#card-list').appendChild(card3);
+
+    // Extension - Array of Artists
+
+    const artists = [
+        {
+            name: "Pablo Picasso",
+            portfolio: [
+                {
+                    title: "The Weeping Woman",
+                    url: "https://brightedge.wordpress.com/wp-content/uploads/2008/07/weeping-woman.jpg"
+                },
+                {
+                    title: "Les Demoiselles d'Avignon",
+                    url: "https://www.artchive.com/wp-content/uploads/2023/04/Les-Demoiselles-dAvignon-PICASSO-Pablo-1907-2.jpg"
+                }
+            ]
+        },
+        {
+            name: "Claude Monet",
+            portfolio: [
+                {
+                    title: "Water Lilies",
+                    url: "https://cdn.shopify.com/s/files/1/0669/4466/3803/files/Water_Lilies_1916_-_1919_-_Claude_Monet_32c780f9-3b1f-4192-984a-32fd5040ef08_480x480.webp?v=1721749355"
+                },
+                {
+                    title: "Impression, Sunrise",
+                    url: "https://www.dailyartmagazine.com/wp-content/uploads/2023/12/01-Claude-Monet-Impression-Soleil-Levant-1872-Musee-Marmottan-Monet-Paris-France-768x432.jpg"
+                }
+            ]
+        },
+        {
+            name: "Paul Klee",
+            portfolio: [
+                {
+                    title: "Senecio",
+                    url: "https://static.wixstatic.com/media/1071a8_43e709ad8623444faeaf88852b4cdd11~mv2.jpg/v1/fill/w_740,h_811,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1071a8_43e709ad8623444faeaf88852b4cdd11~mv2.jpg"
+                },
+                {
+                    title: "Castle and Sun",
+                    url: "https://uploads0.wikiart.org/images/paul-klee/castle-and-sun-1928.jpg!Large.jpg"
+                }
+            ]
+        }
+
+    ];
+
+    // Original implementation
+    // artists.forEach(artist => {
+    //     // Add artist profile as a separate card
+    //     addCard(artist.name, "Famous Painter");
+
+    //     // Add artist's portfolio items as image-based cards
+    //     artist.portfolio.forEach(item => {
+    //         addCard(item.title, "", item.url);
+    //     });
+    // });
+
+    artists.forEach(artist => {
+        // Add artist profile card
+        const card = addCard(artist.name, "Notable Works:");
+
+        // Add portfolio items to the profile card
+        artist.portfolio.forEach(item => {
+            addPortfolioItem(card, item.title, item.url);
+        });
+
+        // Append the artist profile card to the card list
+        document.querySelector('#card-list').appendChild(card);
+    });
+
+</script>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Animation</title>
+    <style>
+        p {
+            animation-name: slidein;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+            }
+
+            50% {
+                font-size: 300%;
+                margin-left: 40%;
+            }
+
+            to {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p>Hello World!</p>
+</body>
+
+</html>
