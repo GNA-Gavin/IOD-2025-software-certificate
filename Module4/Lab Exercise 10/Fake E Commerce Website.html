@@ -148,7 +148,6 @@
                 return;
             }
 
-            // Simplify this - filterSortAndDisplay already handles search terms
             filterSortAndDisplay(category, currentSearchTerm);
         }
 
@@ -285,8 +284,8 @@
 
         function filterSortAndDisplay(category = null, searchTerm = null) {
             // Update globals
-            if (category !== undefined) currentCategory = category;
-            if (searchTerm !== undefined) currentSearchTerm = searchTerm;
+            currentCategory = category;
+            currentSearchTerm = searchTerm;
 
             // Get filtered and sorted products
             const filteredProducts = getFilteredAndSortedProducts(category, searchTerm);
