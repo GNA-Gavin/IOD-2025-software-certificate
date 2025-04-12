@@ -15,16 +15,16 @@
     <template id="product-template">
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-2 mb-4">
             <div class="card h-100">
+                <h5 class="card-title" style="font-weight: 550;">Product title</h5>
                 <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
                     class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Card text.</p>
+                    <h5 class="card-price">$0.00</h5>
+                    <p class="card-text">Product text.</p>
                 </div>
             </div>
         </div>
     </template>
-
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -43,8 +43,28 @@
                         <ul class="dropdown-menu" id="categories" onchange="populateProducts()">
                             <li><a class="dropdown-item" href="#">All</a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Sort By
+                        </a>
+                        <ul class="dropdown-menu" id="sort-options">
+                            <li><a class="dropdown-item" href="#" data-sort="default">Default</a></li>
+                            <li><a class="dropdown-item" href="#" data-sort="price-asc">Price: Low to High</a></li>
+                            <li><a class="dropdown-item" href="#" data-sort="price-desc">Price: High to Low</a></li>
+                            <li><a class="dropdown-item" href="#" data-sort="name-asc">Name: A to Z</a></li>
+                            <li><a class="dropdown-item" href="#" data-sort="name-desc">Name: Z to A</a></li>
+                        </ul>
+                    </li>
+                    <form class="d-flex ms-auto">
+                        <input id="searchInput" class="form-control me-2" type="search" placeholder="Search products..."
+                            aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit" onclick="searchProducts()">Search</button>
+                    </form>
                 </ul>
             </div>
+        </div>
         </div>
     </nav>
 
@@ -54,10 +74,22 @@
         </div>
     </div>
 
-    <div id="main" style="width: 900px;height:600px;"></div>
     <script type="text/javascript">
 
         let products = [];
+        let currentCategory = "All";
+        let currentSort = "default";
+        let currentSearchTerm = "";
+
+        document.addEventListener("DOMContentLoaded", function () { // this was recommended online, will probably be a good practice for my mini-project
+            setupSortOptions();
+            populateCategories();
+            createAllProducts();
+        });
+
+        document.querySelector('form').addEventListener('submit', function (event) { //this stops the form submission
+            event.preventDefault();
+        });
 
         function populateCategories() {
             let categorySelect = document.getElementById("categories");
@@ -65,95 +97,226 @@
             // Need to account for "All" as a category
             const allItem = categorySelect.querySelector(".dropdown-item");
 
+            // Make "All" active by default
+            allItem.classList.add('active');
+
             allItem.addEventListener("click", function () {
+                // Remove active class from all category options
+                document.querySelectorAll("#categories .dropdown-item").forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                // Add active class to this option
+                this.classList.add('active');
+
                 populateProducts("All");
             });
 
             fetch('https://fakestoreapi.com/products/categories')
                 .then((response) => response.json())
                 .then((json) => json.forEach((category) => {
-
                     const li = document.createElement("li");
                     const a = document.createElement("a");
                     a.className = "dropdown-item";
                     a.textContent = category;
-                    a.href = "#";  // Add this to make it work as a link
+                    a.href = "#";
 
                     a.addEventListener("click", function () {
+                        // Remove active class from all category options
+                        document.querySelectorAll("#categories .dropdown-item").forEach(item => {
+                            item.classList.remove('active');
+                        });
+
+                        // Add active class to this option
+                        this.classList.add('active');
+
                         populateProducts(category);
                     });
 
-                    // myOption.text = category;
                     li.appendChild(a);
                     categorySelect.appendChild(li);
-                }))
+                }));
         }
 
-        createAllProducts();
-        populateCategories();
-
         function populateProducts(category) {
+            // Always update current category
+            currentCategory = category;
 
-
-            if (category === 'All') {
+            if (products.length === 0) {
                 createAllProducts();
-                return
-            } else {
-
-                fetch('https://fakestoreapi.com/products')
-                    .then((response) => response.json())
-                    .then((json) => {
-                        products = json;
-
-                        // Filter products based on category
-                        let filteredProducts = products.filter(item => item.category === category);
-
-                        // Clear container and add filtered products
-                        const container = document.getElementById('product-container');
-                        container.innerHTML = "";
-
-                        filteredProducts.forEach(item => {
-                            const template = document.getElementById("product-template").content.cloneNode(true);
-                            template.querySelector('.card-title').innerText = item.title;
-                            template.querySelector('.card-text').innerText = item.description;
-
-                            // Add image if available
-                            if (item.image) {
-                                const img = template.querySelector('img');
-                                img.src = item.image;
-                                img.alt = item.title;
-                            }
-
-                            container.appendChild(template);
-                        });
-                    });
+                // Use a Promise instead of setTimeout
+                return;
             }
+
+            // Simplify this - filterSortAndDisplay already handles search terms
+            filterSortAndDisplay(category, currentSearchTerm);
         }
 
         function createAllProducts() {
+            // If products are already loaded, use them
+            if (products.length > 0) {
+                currentCategory = "All";
+                currentSearchTerm = "";
+                filterSortAndDisplay();
+                return;
+            }
+
+            // Otherwise fetch them
             fetch('https://fakestoreapi.com/products')
                 .then((response) => response.json())
                 .then((json) => {
                     products = json;
-
-                    //populate all cards
-                    const container = document.getElementById('product-container');
-                    container.innerHTML = "";
-
-                    products.forEach(item => {
-                        const template = document.getElementById("product-template").content.cloneNode(true);
-                        template.querySelector('.card-title').innerText = item.title;
-                        template.querySelector('.card-text').innerText = item.description;
-
-                        if (item.image) {
-                                const img = template.querySelector('img');
-                                img.src = item.image;
-                                img.alt = item.title;
-                            }
-                        container.appendChild(template);
-                    });
+                    currentCategory = "All";
+                    currentSearchTerm = "";
+                    filterSortAndDisplay();
                 })
+                .catch(error => {
+                    console.error("Error fetching products:", error);
+                });
         }
+
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+            currentSearchTerm = searchTerm;
+
+            if (!searchTerm) {
+                currentSearchTerm = ""; // Clear it if empty
+                if (currentCategory && currentCategory !== "All") {
+                    filterSortAndDisplay(currentCategory);
+                } else {
+                    filterSortAndDisplay();
+                }
+                return;
+            }
+
+            // Never fetch here - products should already be loaded
+            if (products.length === 0) {
+                createAllProducts();
+                // Store the search term for later use
+                setTimeout(() => {
+                    filterSortAndDisplay(currentCategory, searchTerm);
+                }, 500);
+            } else {
+                // Products already loaded, just filter and display
+                filterSortAndDisplay(currentCategory, searchTerm);
+            }
+        }
+
+        function setupSortOptions() {
+            const sortOptions = document.querySelectorAll("#sort-options .dropdown-item");
+
+            sortOptions.forEach(option => {
+                option.addEventListener("click", function () {
+                    // Remove active class from all options
+                    sortOptions.forEach(opt => opt.classList.remove('active'));
+
+                    // Add active class to selected option
+                    this.classList.add('active');
+
+                    // Get sort option from data attribute - using let/const to avoid global variable
+                    const sortOption = this.getAttribute("data-sort");
+                    currentSort = sortOption;
+
+                    //Check search term first, then category
+                    if (currentSearchTerm) {
+                        filterSortAndDisplay(null, currentSearchTerm);
+                    } else if (currentCategory !== "All" && currentCategory) {
+                        populateProducts(currentCategory);
+                    } else {
+                        filterSortAndDisplay();
+                    }
+                });
+            });
+        }
+
+        function getFilteredAndSortedProducts(category = null, searchTerm = null) {
+            let filteredProducts = [...products];
+
+            // Apply category filter if provided
+            if (category && category !== 'All') {
+                filteredProducts = filteredProducts.filter(p => p.category === category);
+            }
+
+            // Apply search filter if provided
+            if (searchTerm) {
+                filteredProducts = filteredProducts.filter(p =>
+                    p.title.toLowerCase().includes(searchTerm.toLowerCase()));
+            }
+
+            // Apply current sort
+            switch (currentSort) {
+                case "price-asc":
+                    filteredProducts.sort((a, b) => a.price - b.price); break;
+                case "price-desc":
+                    filteredProducts.sort((a, b) => b.price - a.price); break;
+                case "name-asc":
+                    filteredProducts.sort((a, b) => a.title.localeCompare(b.title)); break;
+                case "name-desc":
+                    filteredProducts.sort((a, b) => b.title.localeCompare(a.title)); break;
+                default:
+                    filteredProducts.sort((a, b) => a.id - b.id);
+            }
+
+            return filteredProducts;
+        }
+
+        function displayProducts(productArray) {
+            const container = document.getElementById('product-container');
+            container.innerHTML = "";
+
+            productArray.forEach(item => {
+                const template = document.getElementById("product-template").content.cloneNode(true);
+                template.querySelector('.card-title').innerText = item.title;
+
+                // Format price to always show 2 decimal places
+                template.querySelector('.card-price').innerText = "$" + item.price.toFixed(2);
+
+                template.querySelector('.card-text').innerText = item.description;
+
+                if (item.image) {
+                    const img = template.querySelector('img');
+                    img.src = item.image;
+                    img.alt = item.title;
+                }
+
+                container.appendChild(template);
+            });
+        }
+
+        function filterSortAndDisplay(category = null, searchTerm = null) {
+            // Update globals
+            if (category !== undefined) currentCategory = category;
+            if (searchTerm !== undefined) currentSearchTerm = searchTerm;
+
+            // Get filtered and sorted products
+            const filteredProducts = getFilteredAndSortedProducts(category, searchTerm);
+
+            // Clear container
+            const container = document.getElementById('product-container');
+            container.innerHTML = "";
+
+            // Handle empty results with appropriate message
+            if (filteredProducts.length === 0) {
+                let message = "No products found";
+
+                if (searchTerm && category && category !== "All") {
+                    message = `No products matching "${searchTerm}" in ${category} category`;
+                } else if (searchTerm) {
+                    message = `No products found matching "${searchTerm}"`;
+                } else if (category && category !== "All") {
+                    message = `No products found in ${category}`;
+                }
+
+                container.innerHTML = `<div class="col-12 text-center mt-5">
+                    <h3>${message}</h3>
+                </div>`;
+                return;
+            }
+
+            // Display products
+            displayProducts(filteredProducts);
+        }
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
