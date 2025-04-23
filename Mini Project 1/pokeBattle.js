@@ -81,12 +81,12 @@ function fetchPokemonData() {
         fetchPromises.push(promise);
     }
     
-    Promise.all(fetchPromises)
+    return Promise.all(fetchPromises) // the returned promises are not currently being used by anything but I am maintaining the pattern from mainPage in case of future requrements
         .then(results => {
             pokemon = results;
             populatePokemonSelect();
             console.log(`Loaded ${pokemon.length} Pokémon for battle`);
-            localStorage.setItem('pokemonData', JSON.stringify(pokemon));
+            localStorage.setItem('pokemonData', JSON.stringify(pokemon)); // this makes it available for pokeBattle.js and script.js (only really if pokeBattle.html is accessed before mainPage.html)
         })
         .catch(error => {
             console.error("Error fetching Pokémon:", error);

@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function fetchPokemonDetails(id) {
-// opportunity to use local data here too
+// opportunity to use local data here too but it is only a single API call
     
     // Show loading state
     const container = document.getElementById("pokemon-detail-container");
@@ -174,6 +174,8 @@ function displayPokemonDetails(pokemon) {
     container.appendChild(template);
 }
 
+// can see this if manually enter a value in the url above 1024
+// e.g. http://127.0.0.1:5500/Mini%20Project%201/pokemon-details.html?id=3000
 function showError(message) {
     const container = document.getElementById("pokemon-detail-container");
     container.innerHTML = `
