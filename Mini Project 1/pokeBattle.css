@@ -1,0 +1,202 @@
+/* Battle page styling */
+.battle-arena {
+    min-height: 300px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* Pokemon cards in battle */
+.pokemon-battle-card {
+    border: 2px solid #ccc !important;
+    padding: 15px !important;
+    margin: 10px auto !important;
+    max-width: 200px !important;
+    background-color: white !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.pokemon-battle-card .pokemon-name {
+    text-transform: capitalize;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.pokemon-img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    display: block;
+    margin: 10px auto;
+}
+
+.pokemon-stat {
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 8px;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+}
+
+/* VS Badge */
+.vs-badge {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #dc3545;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.stat-comparison {
+    font-size: 1.2rem;
+    margin: 15px 0;
+}
+
+/* Winner/loser styling */
+.winner {
+    border: 3px solid #28a745;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+}
+
+.loser {
+    opacity: 0.8;
+    filter: grayscale(30%);
+}
+
+/* Battle history styling */
+.battle-history-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.battle-history-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.result-win {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.result-lose {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.result-draw {
+    color: #6c757d;
+    font-weight: bold;
+}
+
+/* Battle outcome message styling */
+.battle-outcome {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.outcome-win {
+    background-color: rgba(40, 167, 69, 0.2);
+    border: 1px solid #28a745;
+}
+
+.outcome-lose {
+    background-color: rgba(220, 53, 69, 0.2);
+    border: 1px solid #dc3545;
+}
+
+.outcome-draw {
+    background-color: rgba(108, 117, 125, 0.2);
+    border: 1px solid #6c757d;
+}
+
+/* Animation for battle effect */
+@keyframes battleShake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+.battle-animation {
+    animation: battleShake 0.5s ease-in-out !important;
+}
+
+/* Stats preview styling */
+.stat-preview {
+    transition: background-color 0.2s ease;
+}
+
+.stat-preview:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.selected-stat {
+    background-color: rgba(13, 110, 253, 0.1);
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+/* Adjust progress bar heights */
+.progress {
+  height: 8px;
+  margin-top: 4px;
+}
+
+#preview-name {
+  text-transform: capitalize;
+}
+
+/* Preview image styling */
+#preview-image {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Make the whole battle card more interactive */
+.pokemon-battle-card:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .vs-badge {
+        font-size: 1.8rem;
+        margin: 15px 0;
+    }
+    
+    .pokemon-img {
+        max-width: 120px;
+        max-height: 120px;
+    }
+}
+
+/* Make all capitalization consistent with a global rule */
+.pokemon-name, #preview-name {
+  text-transform: capitalize;
+}
+
+/* Title container styling */
+.title-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-top: 5px solid #e21b5a;
+  border-bottom: 5px solid #3d5af1;
+}
+
+.title-container h1 {
+  color: #1a1a2e;
+  font-weight: bold;
+}
