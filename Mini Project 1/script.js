@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
   setupSortOptions(); // this does not rely on any api data
   setupLiveSearch(); // added this after the initial search functionality to allow for searching while typing
 
+  // localStorage.removeItem('pokemonData'); // testing loading 
+  //   pokemon = []; // 
+
   // First fetch the Pokémon data
   fetchPokemonData() // returns a promise data is populated before remaining functions are called
     .then(() => {
