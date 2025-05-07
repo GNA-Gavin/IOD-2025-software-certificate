@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+.centering {
+    margin-top: 50px;
+}
+
+input,
+select,
+button {
+    font-size: 20px;
+    margin: 10px;
+    padding: 10px;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#clear {
+    background-color: #a72828;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#clear:hover {
+    background-color: #882121;
+}
+
+.result-box {
+    display: inline-block;
+    margin: 20px auto;
+    border: 2px solid #000;
+    padding: 10px;
+    font-size: 100px;
+    font-weight: bold;
+    background-color: #fff;
+    white-space: nowrap;
+}

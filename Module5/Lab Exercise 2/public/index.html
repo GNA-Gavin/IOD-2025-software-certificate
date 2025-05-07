@@ -1,0 +1,79 @@
+<html lang="en">
+
+<head>
+    <title>Calculator Routes Demo</title>
+</head>
+
+<body>
+    <h1>Calculator API Demo</h1>
+    <p>Num1 = 10</p>
+    <p>Num2 = 5</p>
+
+    <h3>Addition</h3>
+    <div id="add-result"></div>
+
+    <h3>Subtraction</h3>
+    <div id="subtract-result"></div>
+
+    <h3>Multiplication</h3>
+    <div id="multiply-result"></div>
+
+    <h3>Division</h3>
+    <div id="divide-result"></div>
+
+
+    <script>
+
+        let num1 = 10;
+        let num2 = 5;
+        // Addition
+        fetch(`/calculator/add?num1=${num1}&num2=${num2}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Addition result:", data.res);
+                document.getElementById("add-result").textContent = data.res;
+            })
+            .catch(error => {
+                console.error("Addition error:", error);
+                document.getElementById("add-result").textContent = "Error";
+            });
+
+        // Subtraction
+        fetch(`/calculator/subtract?num1=${num1}&num2=${num2}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Subtraction result:", data.res);
+                document.getElementById("subtract-result").textContent = data.res;
+            })
+            .catch(error => {
+                console.error("Subtraction error:", error);
+                document.getElementById("subtract-result").textContent = "Error";
+            });
+
+        // Multiplication
+        fetch(`/calculator/multiply?num1=${num1}&num2=${num2}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Multiplication result:", data.res);
+                document.getElementById("multiply-result").textContent = data.res;
+            })
+            .catch(error => {
+                console.error("Multiplication error:", error);
+                document.getElementById("multiply-result").textContent = "Error";
+            });
+
+        // Division
+        fetch(`/calculator/divide?num1=${num1}&num2=${num2}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Division result:", data.res);
+                document.getElementById("divide-result").textContent = data.res;
+            })
+            .catch(error => {
+                console.error("Division error:", error);
+                document.getElementById("divide-result").textContent = "Error";
+            });
+    </script>
+</body>
+
+</html>
