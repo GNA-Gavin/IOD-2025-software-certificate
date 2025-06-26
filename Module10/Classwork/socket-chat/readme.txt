@@ -1,0 +1,1 @@
+https://hub.docker.com/repository/docker/narezav/socket-chat-2025june/general

@@ -1,0 +1,282 @@
+{
+	"info": {
+		"_postman_id": "f5cbd3b5-d5f6-4dbc-8e61-2f03e40e14e3",
+		"name": "Mongo Local Blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "45629311"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/users/"
+					},
+					"response": []
+				},
+				{
+					"name": "single user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/users/685c7dd9ef230041dfa06436"
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Gavin123\",\n    \"email\": \"gavin@example.com\",\n    \"password\": \"JoGav1234\",\n    \"profile_picture_url\": \"Doe\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/create"
+					},
+					"response": []
+				},
+				{
+					"name": "update a user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"profile_picture_url\": \"gav.jpeg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/685c7dd9ef230041dfa06436"
+					},
+					"response": []
+				},
+				{
+					"name": "delete a user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/users/685c8069ef230041dfa0643e"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "all posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/posts/"
+					},
+					"response": []
+				},
+				{
+					"name": "single post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/posts/685c85c95e0b9cd709c5be9a"
+					},
+					"response": []
+				},
+				{
+					"name": "create post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"685c7dd9ef230041dfa06436\",\n    \"title\": \"First Post!\",\n    \"description\": \"Here is my first post\",\n    \"image_url\": \"post.jpeg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/posts/create"
+					},
+					"response": []
+				},
+				{
+					"name": "update post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Here is my updated first post\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/posts/685c85425e0b9cd709c5be8e"
+					},
+					"response": []
+				},
+				{
+					"name": "delete post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/posts/685c85425e0b9cd709c5be8e"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "all comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/comments/"
+					},
+					"response": []
+				},
+				{
+					"name": "single comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/comments/685ca0d831ebfb4fff792bd5"
+					},
+					"response": []
+				},
+				{
+					"name": "create comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"685c7dd9ef230041dfa06436\",\n    \"post_id\": \"685c85c95e0b9cd709c5be9a\",\n    \"content\": \"Commenting on this post 2nd time\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/comments/create"
+					},
+					"response": []
+				},
+				{
+					"name": "update comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Commenting on this post has been updated\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/comments/685ca05431ebfb4fff792bc3"
+					},
+					"response": []
+				},
+				{
+					"name": "delete comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/comments/685ca0cb31ebfb4fff792bcf"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Likes",
+			"item": [
+				{
+					"name": "all likes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/likes/"
+					},
+					"response": []
+				},
+				{
+					"name": "single like",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/likes/685ca44e71fd46f02a5cf562"
+					},
+					"response": []
+				},
+				{
+					"name": "likes for a post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/likes/post/685c85c95e0b9cd709c5be9a"
+					},
+					"response": []
+				},
+				{
+					"name": "likes for a comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/likes/comment/685ca0d831ebfb4fff792bd5"
+					},
+					"response": []
+				},
+				{
+					"name": "create like",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"685c7dd9ef230041dfa06436\",\n  \"post_id\": \"685c85c95e0b9cd709c5be9a\",\n  \"comment_id\": \"685ca05431ebfb4fff792bc3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/likes/create"
+					},
+					"response": []
+				},
+				{
+					"name": "delete like",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/likes/685ca6bcb1e216d7bf256802"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

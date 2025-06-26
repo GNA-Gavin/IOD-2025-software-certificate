@@ -1,0 +1,345 @@
+{
+	"info": {
+		"_postman_id": "472a2ac5-193d-4453-bc88-34b9e2ca83f9",
+		"name": "MySQL Local Blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "45629311"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/users/1"
+					},
+					"response": []
+				},
+				{
+					"name": "single user Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/users/1"
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Gavin456\",\n    \"email\": \"gavinq12@example.com\",\n    \"password\": \"JoGavas1234\",\n    \"profile_picture_url\": \"Doe.jpeg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/api/users/create"
+					},
+					"response": []
+				},
+				{
+					"name": "update a user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"profile_picture_url\": \"lala.jpeg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/api/users/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete a user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8082/api/users/4"
+					},
+					"response": []
+				},
+				{
+					"name": "all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/users/1"
+					},
+					"response": []
+				},
+				{
+					"name": "single user Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/users/1"
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Gavin456\",\n    \"email\": \"gavinq12@example.com\",\n    \"password\": \"JoGavas1234\",\n    \"profile_picture_url\": \"Doe.jpeg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/api/users/create"
+					},
+					"response": []
+				},
+				{
+					"name": "update a user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"profile_picture_url\": \"lala.jpeg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/api/users/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete a user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8082/api/users/4"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "all posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/posts/"
+					},
+					"response": []
+				},
+				{
+					"name": "single post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/posts/2"
+					},
+					"response": []
+				},
+				{
+					"name": "create post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"1\",\n    \"title\": \"Third Post!\",\n    \"description\": \"Here is my third post\",\n    \"image_url\": \"post.jpeg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/api/posts/create"
+					},
+					"response": []
+				},
+				{
+					"name": "update post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Here is my newer updated post\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/api/posts/2"
+					},
+					"response": []
+				},
+				{
+					"name": "delete post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8082/api/posts/3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "all comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/comments/"
+					},
+					"response": []
+				},
+				{
+					"name": "single comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/comments/1"
+					},
+					"response": []
+				},
+				{
+					"name": "create comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"1\",\n    \"post_id\": \"1\",\n    \"content\": \"Commenting on this post 4rd time\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/api/comments/create"
+					},
+					"response": []
+				},
+				{
+					"name": "update comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Commenting on this post has been updated\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/api/comments/2"
+					},
+					"response": []
+				},
+				{
+					"name": "delete comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8082/api/comments/3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Likes",
+			"item": [
+				{
+					"name": "all likes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/likes/"
+					},
+					"response": []
+				},
+				{
+					"name": "single like",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/likes/1"
+					},
+					"response": []
+				},
+				{
+					"name": "likes for a post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/likes/post/1"
+					},
+					"response": []
+				},
+				{
+					"name": "likes for a comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/likes/comment/1"
+					},
+					"response": []
+				},
+				{
+					"name": "create like",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"1\",\n  \"post_id\": \"2\",\n  \"comment_id\": \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/api/likes/create"
+					},
+					"response": []
+				},
+				{
+					"name": "delete like",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8082/api/likes/4"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
