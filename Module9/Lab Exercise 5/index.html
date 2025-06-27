@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<script src="/socket.io/socket.io.js"></script>
+
+<head>
+    <title>Socket.IO chat</title>
+    <style>
+        body {
+            margin: 0;
+            padding-bottom: 3rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        #chat-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        #sidebar {
+            width: 200px;
+            background: #f5f5f5;
+            border-right: 1px solid #ddd;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        #main-chat {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #nickname-setup {
+            background: #fff;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            margin: -1rem -1rem 1rem -1rem;
+        }
+
+        #nickname-input {
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 160px;
+            box-sizing: border-box;
+        }
+
+        #nickname-btn {
+            padding: 0.5rem 1rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 160px;
+            margin-top: 0.5rem;
+        }
+
+        #form {
+            background: rgba(0, 0, 0, 0.15);
+            padding: 0.25rem;
+            position: fixed;
+            bottom: 0;
+            left: 200px;
+            right: 0;
+            display: flex;
+            height: 3rem;
+            box-sizing: border-box;
+            backdrop-filter: blur(10px);
+        }
+
+        #input {
+            border: none;
+            padding: 0 1rem;
+            flex-grow: 1;
+            border-radius: 2rem;
+            margin: 0.25rem;
+        }
+
+        #input:focus {
+            outline: none;
+        }
+
+        #form>button {
+            background: #333;
+            border: none;
+            padding: 0 1rem;
+            margin: 0.25rem;
+            border-radius: 3px;
+            outline: none;
+            color: #fff;
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 1rem;
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 4rem;
+        }
+
+        #messages>li {
+            padding: 0.5rem 1rem;
+            margin: 0.25rem 0;
+            border-radius: 8px;
+        }
+
+        .message {
+            background: #e3f2fd;
+        }
+
+        .my-message {
+            background: #c8e6c9;
+            margin-left: 2rem;
+        }
+
+        .status-message {
+            background: #fff3e0;
+            font-style: italic;
+            color: #666;
+            text-align: center;
+        }
+
+        .message-header {
+            font-weight: bold;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .message-time {
+            font-size: 0.8em;
+            color: #999;
+            float: right;
+        }
+
+        #online-users {
+            margin-top: 1rem;
+        }
+
+        #online-users h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .user-item {
+            padding: 0.25rem 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .user-item:before {
+            content: "🟢";
+            margin-right: 0.5rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chat-container">
+        <div id="sidebar">
+            <div id="nickname-setup">
+                <h3>Enter your nickname:</h3>
+                <input id="nickname-input" type="text" placeholder="Your nickname" maxlength="20" />
+                <button id="nickname-btn">Join Chat</button>
+            </div>
+            <div id="online-users">
+                <h3>Online Users:</h3>
+                <div id="users-list"></div>
+            </div>
+        </div>
+        <div id="main-chat">
+            <ul id="messages"></ul>
+            <form id="form" action="" class="hidden">
+                <input id="input" autocomplete="off" placeholder="Type a message..." /><button>Send</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    var socket = io();
+    var nickname = "";
+
+    // DOM elements
+    var form = document.getElementById('form');
+    var input = document.getElementById('input');
+    var messages = document.getElementById("messages");
+    var nicknameInput = document.getElementById('nickname-input');
+    var nicknameBtn = document.getElementById('nickname-btn');
+    var nicknameSetup = document.getElementById('nickname-setup');
+    var onlineUsers = document.getElementById('users-list');
+
+    // Set nickname
+    function setNickname() {
+        var nick = nicknameInput.value.trim();
+        if (nick) {
+            nickname = nick;
+            socket.emit('set nickname', nickname);
+            nicknameSetup.classList.add('hidden');
+            form.classList.remove('hidden');
+            input.focus();
+        }
+    }
+
+    nicknameBtn.addEventListener('click', setNickname);
+    nicknameInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            setNickname();
+        }
+    });
+
+    // Send message
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (input.value.trim()) {
+            // Add message to own chat immediately
+            addMessageToChat({
+                nickname: nickname,
+                message: input.value,
+                timestamp: new Date().toLocaleTimeString()
+            }, true);
+
+            // Send to server
+            socket.emit('chat message', { message: input.value });
+            input.value = '';
+        }
+    });
+
+    // Helper function to add messages to chat
+    function addMessageToChat(data, isOwnMessage = false) {
+        var item = document.createElement("li");
+        item.className = isOwnMessage ? "my-message" : "message";
+
+        var header = document.createElement("div");
+        header.className = "message-header";
+        header.textContent = data.nickname;
+
+        var time = document.createElement("span");
+        time.className = "message-time";
+        time.textContent = data.timestamp;
+        header.appendChild(time);
+
+        var messageText = document.createElement("div");
+        messageText.textContent = data.message;
+
+        item.appendChild(header);
+        item.appendChild(messageText);
+        messages.appendChild(item);
+
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    // Socket event listeners
+    socket.on('chat message', (data) => {
+        addMessageToChat(data);
+    });
+
+    socket.on('user status', (status) => {
+        var item = document.createElement("li");
+        item.className = "status-message";
+        item.textContent = status;
+        messages.appendChild(item);
+        messages.scrollTop = messages.scrollHeight;
+    });
+
+    socket.on('online users', (users) => {
+        onlineUsers.innerHTML = '';
+        users.forEach(user => {
+            var userDiv = document.createElement('div');
+            userDiv.className = 'user-item';
+            userDiv.textContent = user;
+            onlineUsers.appendChild(userDiv);
+        });
+    });
+
+    // Focus nickname input on load
+    nicknameInput.focus();
+</script>
+
+</html>
