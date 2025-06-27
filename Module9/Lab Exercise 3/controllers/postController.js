@@ -156,14 +156,12 @@ const deletePost = (req, res) => {
       Promise.all([
         Models.Comment.destroy({ where: { post_id: req.params.id } }),
         Models.Like.destroy({ where: { post_id: req.params.id } }),
-      ])
-        .then(() => {
-          // Delete the post
-          Models.Post.destroy({ where: { id: req.params.id } })
-            .then(() => {
-              res.send({ result: 200, data: post });
-            });
+      ]).then(() => {
+        // Delete the post
+        Models.Post.destroy({ where: { id: req.params.id } }).then(() => {
+          res.send({ result: 200, data: post });
         });
+      });
     })
     .catch((err) => {
       console.log(err);

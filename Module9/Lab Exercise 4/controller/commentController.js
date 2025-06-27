@@ -1,5 +1,5 @@
 "use strict";
-let Models = require("../models"); // matches index.js
+let Models = require("../models");
 
 const getComments = (res) => {
   // finds all comments

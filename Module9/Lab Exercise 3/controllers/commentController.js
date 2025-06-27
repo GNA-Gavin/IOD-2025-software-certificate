@@ -140,13 +140,11 @@ const deleteComment = (req, res) => {
       }
 
       // Delete related likes first, then delete comment
-      Models.Like.destroy({ where: { comment_id: req.params.id } })
-        .then(() => {
-          Models.Comment.destroy({ where: { id: req.params.id } })
-            .then(() => {
-              res.send({ result: 200, data: comment });
-            });
+      Models.Like.destroy({ where: { comment_id: req.params.id } }).then(() => {
+        Models.Comment.destroy({ where: { id: req.params.id } }).then(() => {
+          res.send({ result: 200, data: comment });
         });
+      });
     })
     .catch((err) => {
       console.log(err);

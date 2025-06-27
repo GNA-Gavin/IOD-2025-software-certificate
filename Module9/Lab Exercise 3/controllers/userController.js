@@ -43,21 +43,20 @@ const createUser = (data, res) => {
 
 // updates a user by ID
 const updateUser = (req, res) => {
-  console.log('Update request for user ID:', req.params.id);
-  console.log('Update data:', req.body);
-  
+  console.log("Update request for user ID:", req.params.id);
+  console.log("Update data:", req.body);
+
   Models.User.update(req.body, {
     where: { id: req.params.id },
   })
     .then((rowsAffected) => {
-      console.log('Rows affected result:', rowsAffected);
+      console.log("Rows affected result:", rowsAffected);
       if (rowsAffected[0] > 0) {
         // Fetch the updated user to return it
-        Models.User.findByPk(req.params.id)
-          .then((updatedUser) => {
-            console.log('Updated user found:', updatedUser);
-            res.send({ result: 200, data: updatedUser });
-          });
+        Models.User.findByPk(req.params.id).then((updatedUser) => {
+          console.log("Updated user found:", updatedUser);
+          res.send({ result: 200, data: updatedUser });
+        });
       } else {
         res.send({ result: 404, error: "User not found" });
       }

@@ -90,48 +90,47 @@ const createLike = (data, res) => {
         comment_id: data.comment_id || null,
       };
 
-      Models.Like.findOne({ where: likeQuery })
-        .then((existingLike) => {
-          if (existingLike) {
-            const likeType = data.comment_id ? "comment" : "post";
-            return res.send({
-              result: 400,
-              error: `User already liked this ${likeType}`,
-            });
-          }
+      Models.Like.findOne({ where: likeQuery }).then((existingLike) => {
+        if (existingLike) {
+          const likeType = data.comment_id ? "comment" : "post";
+          return res.send({
+            result: 400,
+            error: `User already liked this ${likeType}`,
+          });
+        }
 
-          // Create new like
-          Models.Like.create(data)
-            .then((like) => {
-              // Return like with populated information
-              Models.Like.findByPk(like.id, {
-                include: [
-                  {
-                    model: Models.User,
-                    as: "user",
-                    attributes: ["id", "username", "email"],
-                  },
-                  {
-                    model: Models.Post,
-                    as: "post",
-                    attributes: ["id", "title"],
-                  },
-                  {
-                    model: Models.Comment,
-                    as: "comment",
-                    attributes: ["id", "content"],
-                    required: false,
-                  },
-                ],
-              }).then((populatedLike) => {
-                res.send({ result: 200, data: populatedLike });
-              });
-            })
-            .catch((err) => {
-              console.log(err);
-              res.send({ result: 500, error: err.message });
+        // Create new like
+        Models.Like.create(data)
+          .then((like) => {
+            // Return like with populated information
+            Models.Like.findByPk(like.id, {
+              include: [
+                {
+                  model: Models.User,
+                  as: "user",
+                  attributes: ["id", "username", "email"],
+                },
+                {
+                  model: Models.Post,
+                  as: "post",
+                  attributes: ["id", "title"],
+                },
+                {
+                  model: Models.Comment,
+                  as: "comment",
+                  attributes: ["id", "content"],
+                  required: false,
+                },
+              ],
+            }).then((populatedLike) => {
+              res.send({ result: 200, data: populatedLike });
             });
-        });
+          })
+          .catch((err) => {
+            console.log(err);
+            res.send({ result: 500, error: err.message });
+          });
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -147,10 +146,9 @@ const deleteLike = (req, res) => {
         return res.send({ result: 404, error: "Like not found" });
       }
 
-      Models.Like.destroy({ where: { id: req.params.id } })
-        .then(() => {
-          res.send({ result: 200, data: like });
-        });
+      Models.Like.destroy({ where: { id: req.params.id } }).then(() => {
+        res.send({ result: 200, data: like });
+      });
     })
     .catch((err) => {
       console.log(err);

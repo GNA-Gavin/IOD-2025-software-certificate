@@ -1,0 +1,398 @@
+{
+	"info": {
+		"_postman_id": "263b5bb7-1984-4096-b641-9091cc5f5726",
+		"name": "Mongo Local Blog Enhanced",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "45629311"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/users/"
+					},
+					"response": []
+				},
+				{
+					"name": "single user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/users/685c7dd9ef230041dfa06436"
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Gavin12ABC222\",\n    \"email\": \"gavin222@example.com\",\n    \"password\": \"JoGav1234\",\n    \"profile_picture_url\": \"Doe\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/create"
+					},
+					"response": []
+				},
+				{
+					"name": "update a user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"profile_picture_url\": \"gav.jpeg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/685de071407970cffab3fab0"
+					},
+					"response": []
+				},
+				{
+					"name": "delete a user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/users/685e457f407970cffab3fab7"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "all posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/posts/"
+					},
+					"response": []
+				},
+				{
+					"name": "single post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/posts/685c85c95e0b9cd709c5be9a"
+					},
+					"response": []
+				},
+				{
+					"name": "create post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"685de071407970cffab3fab0\",\n    \"title\": \"3nd Post!\",\n    \"description\": \"Here is my 3nd post\",\n    \"image_url\": \"post.jpeg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/posts/create"
+					},
+					"response": []
+				},
+				{
+					"name": "update post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Here is my updated first post\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/posts/685e45be407970cffab3fabd"
+					},
+					"response": []
+				},
+				{
+					"name": "delete post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/posts/685e45e7407970cffab3fac4"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Enhanced Posts",
+			"item": [
+				{
+					"name": "all enhanced posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/enhanced-posts/"
+					},
+					"response": []
+				},
+				{
+					"name": "single enhanced post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/enhanced-posts/685e45be407970cffab3fabd/"
+					},
+					"response": []
+				},
+				{
+					"name": "create enhanced post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"685c7dd9ef230041dfa06436\",\n    \"title\": \"First enhanced Post!\",\n    \"description\": \"Here is my first post\",\n    \"image_url\": \"post.jpeg\",\n    \"city\": \"Bangkok\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/enhanced-posts/create-with-weather"
+					},
+					"response": []
+				},
+				{
+					"name": "update enhanced post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Here is my updated enhanced post\",\n    \"city\": \"London\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/enhanced-posts/685e45be407970cffab3fabd"
+					},
+					"response": []
+				},
+				{
+					"name": "delete enhanced post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/enhanced-posts/685e462e407970cffab3fad1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "all comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/comments/"
+					},
+					"response": []
+				},
+				{
+					"name": "single comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/comments/685e4767407970cffab3fae2"
+					},
+					"response": []
+				},
+				{
+					"name": "create comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"685de071407970cffab3fab0\",\n    \"post_id\": \"685e45be407970cffab3fabd\",\n    \"content\": \"Commenting on this post again\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/comments/create"
+					},
+					"response": []
+				},
+				{
+					"name": "update comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Commenting on this post has been updated\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/comments/685e4767407970cffab3fae2"
+					},
+					"response": []
+				},
+				{
+					"name": "delete comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/comments/685e478b407970cffab3faeb"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Likes",
+			"item": [
+				{
+					"name": "all likes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/likes/"
+					},
+					"response": []
+				},
+				{
+					"name": "single like",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/likes/685e480e407970cffab3fb04"
+					},
+					"response": []
+				},
+				{
+					"name": "likes for a post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/likes/post/685e45be407970cffab3fabd"
+					},
+					"response": []
+				},
+				{
+					"name": "likes for a comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/likes/comment/685e4767407970cffab3fae2"
+					},
+					"response": []
+				},
+				{
+					"name": "create like",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"685de071407970cffab3fab0\",\n  \"post_id\": \"685e45be407970cffab3fabd\",\n  \"comment_id\": \"685e4767407970cffab3fae2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/likes/create"
+					},
+					"response": []
+				},
+				{
+					"name": "delete like",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/likes/685dd9010b1c2abeb8a340da"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Weather",
+			"item": [
+				{
+					"name": "weather by path",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/weather/city/Sydney"
+					},
+					"response": []
+				},
+				{
+					"name": "weather by query",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/weather?city=Bangkok",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "Bangkok"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "info",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

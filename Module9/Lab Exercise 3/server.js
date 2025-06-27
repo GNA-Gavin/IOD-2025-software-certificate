@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 8082;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
-  console.log('\n=== Available API Routes ===');
+  console.log("\n=== Available API Routes ===");
   listRoutes(app);
-  console.log('============================\n');
+  console.log("============================\n");
 });
