@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "b3a3b1e3-47db-4ab2-91f5-4afb1e4bee2d",
+		"name": "Recipes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "45629311"
+	},
+	"item": [
+		{
+			"name": "Database",
+			"item": [
+				{
+					"name": "populate db",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:3002/api/data-init/populate"
+					},
+					"response": []
+				},
+				{
+					"name": "clear db",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"confirm\":\"DELETE_ALL_RECIPES\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3002/api/data-init/clear"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recipes",
+			"item": [
+				{
+					"name": "all recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/api/recipes?limit=1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipes by page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/api/recipes?page=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipe by search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/api/recipes?search=chocolate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "chocolate"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipes by category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/api/recipes?category=pasta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "pasta"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipes by cuisine",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/api/recipes?cuisine=italian",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "cuisine",
+									"value": "italian"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipes by source",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/api/recipes?source=TheMealDB",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "source",
+									"value": "TheMealDB"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipes by all params",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/api/recipes?source=TheMealDB&category=Dessert&cuisine=French&search=chocolate&limit=2&page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"api",
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "source",
+									"value": "TheMealDB"
+								},
+								{
+									"key": "category",
+									"value": "Dessert"
+								},
+								{
+									"key": "cuisine",
+									"value": "French"
+								},
+								{
+									"key": "search",
+									"value": "chocolate"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipe by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3002/api/recipes/685e88e7a47a0bfab8f37915"
+					},
+					"response": []
+				},
+				{
+					"name": "create a recipe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"title\": \"Dark chocolate creme brulee\",\n        \"description\": \"Gavin's favourite choccy food!\",\n        \"instructions\": \"Heat the cream, dark chocolate and vanilla pod in a pan until the chocolate has melted. Take off the heat and allow to infuse for 10 mins, scraping the pod seeds into the cream. If using the vanilla extract, add straight away. Heat oven to 160C/fan 140C/gas 3.\\r\\nBeat yolks and sugar until pale. stir in the chocolate cream. Strain into a jug and pour into ramekins. Place in a deep roasting tray and pour boiling water halfway up the sides. Bake for 15-20 mins until just set with a wobbly centre. Chill in the fridge for at least 4 hrs.\\r\\nTo serve, sprinkle some sugar on top of the brûlées and caramelise with a blowtorch or briefly under a hot grill. Leave caramel to harden, then serve.\",\n        \"ingredients\": [\n            {\n                \"name\": \"Double Cream\",\n                \"amount\": \"568ml\",\n                \"_id\": \"685e88e7a47a0bfab8f37916\"\n            },\n            {\n                \"name\": \"Dark Chocolate Chips\",\n                \"amount\": \"100g\",\n                \"_id\": \"685e88e7a47a0bfab8f37917\"\n            },\n            {\n                \"name\": \"Vanilla\",\n                \"amount\": \"Pod of\",\n                \"_id\": \"685e88e7a47a0bfab8f37918\"\n            },\n            {\n                \"name\": \"Egg Yolks\",\n                \"amount\": \"6\",\n                \"_id\": \"685e88e7a47a0bfab8f37919\"\n            },\n            {\n                \"name\": \"Caster Sugar\",\n                \"amount\": \"2 tbs\",\n                \"_id\": \"685e88e7a47a0bfab8f3791a\"\n            },\n            {\n                \"name\": \"Caster Sugar\",\n                \"amount\": \"Top\",\n                \"_id\": \"685e88e7a47a0bfab8f3791b\"\n            }\n        ],\n        \"category\": \"Dessert\",\n        \"cuisine\": \"French\",\n        \"image\": \"darkchoccy.jpeg\",\n        \"tags\": [\n            \"Desert\",\n            \"DinnerParty\",\n            \"Pudding\"\n        ]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3002/api/recipes/"
+					},
+					"response": []
+				},
+				{
+					"name": "update a recipe",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\":\"Gavin's favourite food!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3002/api/recipes/685e88e7a47a0bfab8f37915"
+					},
+					"response": []
+				},
+				{
+					"name": "delete a recipe",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3002/api/recipes/685e934df9e68bb5f06b174d"
+					},
+					"response": []
+				},
+				{
+					"name": "recipe stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3002/api/recipes/stats"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
